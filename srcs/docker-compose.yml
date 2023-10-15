@@ -1,0 +1,16 @@
+version: '3.3'
+services:
+  nginx:
+    container_name: nginx
+    build:
+      context: ./requirements/nginx
+    ports:
+      - "443:443"
+    volumes:
+      - "/mnt/wordpress:/var/www/wordpress"
+  wordpress:
+    container_name: wordpress
+    build:
+      context: ./requirements/wordpress
+    volumes:
+      - "/mnt/wordpress:/var/www/wordpress"
