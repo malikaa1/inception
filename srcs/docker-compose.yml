@@ -1,4 +1,4 @@
-version: '3.3'
+version: '2.2'
 services:
   nginx:
     image: nginx
@@ -11,6 +11,10 @@ services:
       - "/home/mrahmani/data/wordpress:/var/www/wordpress"
     depends_on:
       - wordpress
+    env_file:
+      - ./.env
+    restart: always
+    init: true
   wordpress:
     image: wordpress
     container_name: wordpress
@@ -20,6 +24,10 @@ services:
       - "/home/mrahmani/data/wordpress:/var/www/wordpress"
     depends_on:
       - mariadb
+    env_file:
+      - ./.env
+    restart: always
+    init: true
   mariadb:
     image: mariadb
     container_name: mariadb
@@ -27,3 +35,7 @@ services:
       context: ./requirements/mariadb
     volumes:
       - "/home/mrahmani/data/mariadb:/var/lib/mysql"
+    env_file:
+      - ./.env
+    restart: always
+    init: true

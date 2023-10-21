@@ -2,6 +2,8 @@
 
 install_mysql_db;
 
-/etc/init.d/mysql start
+#/etc/init.d/mysql start;
 
-mysql
+exec sleep infinity;
+
+/etc/init.d/mysql stop;
