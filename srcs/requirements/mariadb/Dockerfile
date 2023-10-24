@@ -1,10 +1,13 @@
 FROM debian:buster
-EXPOSE 3306
+RUN apt update && apt install -y mariadb-server && apt install -y mariadb-client
 
-RUN apt-get update && apt-get install -y mariadb-server && apt-get install -y mariadb-client
+COPY ./tools/init.sh .
+COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/
 
-COPY ./tools/configure-mariadb.sh .
-RUN chmod +x ./configure-mariadb.sh
+RUN chmod +x ./init.sh
+
+RUN mkdir /run/mysqld
+RUN chown -R mysql:mysql /run/mysqld
 
 
-CMD [ "./configure-mariadb.sh"]
+CMD ["./init.sh"]
