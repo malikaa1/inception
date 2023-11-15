@@ -5,4 +5,3 @@ stop:
 clean:
 	sudo rm -rf /home/mrahmani/data/*
 re:	stop clean all
-
