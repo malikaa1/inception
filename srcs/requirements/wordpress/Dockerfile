@@ -1,8 +1,6 @@
 FROM debian:buster
 EXPOSE 9000
-RUN apt-get update
-RUN apt-get install -y php php-common php-cli php-fpm php-json php-pdo php-mysql php-zip php-gd php-mbstring php-curl php-xml php-pear php-bcmath default-mysql-client
-RUN apt-get install wget
+RUN apt-get update && apt-get upgrade && apt-get install -y php php-common php-cli php-fpm php-json php-pdo php-mysql php-zip php-gd php-mbstring php-curl php-xml php-pear php-bcmath default-mysql-client wget
 
 #used by php-fpm to start
 RUN mkdir /run/php 
