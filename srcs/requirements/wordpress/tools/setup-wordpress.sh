@@ -1,5 +1,6 @@
 #!/bin/sh
 cd /var/www/wordpress;
+# install wordpress if not installed
 if ! wp core --allow-root is-installed; then
 
     echo "wordpress is not installed , installing ...";

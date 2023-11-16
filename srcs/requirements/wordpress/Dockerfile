@@ -5,6 +5,7 @@ RUN apt-get update && apt-get upgrade && apt-get install -y php php-common php-c
 #used by php-fpm to start
 RUN mkdir /run/php 
 
+# configure fpm to listen on port 9000
 RUN sed -i 's|listen = /run/php/php7.3-fpm.sock|listen = 0.0.0.0:9000|' /etc/php/7.3/fpm/pool.d/www.conf
 
 COPY ./tools/setup-wordpress.sh /usr/local/bin

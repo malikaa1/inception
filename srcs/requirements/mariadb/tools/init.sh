@@ -18,6 +18,7 @@ if [ ! -d "/var/lib/mysql/mysql" ]; then
     
     echo "initializing mysqld db...";
     
+    # create database "mysql"
     mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql;
 fi
 
