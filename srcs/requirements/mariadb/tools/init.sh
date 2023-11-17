@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ ! -d "/var/lib/mysql/mysql" || ! -d "/var/lib/mysql/wordpress"]; then
+if [ ! -d "/var/lib/mysql/mysql" ] || [ ! -d "/var/lib/mysql/wordpress" ]; then
 
     # secure installation
     echo "UPDATE mysql.user SET Password=PASSWORD('$MYSQL_ROOT_PASSWORD') WHERE User='root';" >> /tmp/init_script.sql;
@@ -8,6 +8,7 @@ if [ ! -d "/var/lib/mysql/mysql" || ! -d "/var/lib/mysql/wordpress"]; then
     echo "DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');" >> /tmp/init_script.sql;
     echo "DROP DATABASE IF EXISTS test;" >> /tmp/init_script.sql;
     echo "DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%';" >> /tmp/init_script.sql;
+    echo "UPDATE mysql.user SET plugin = '' WHERE user = 'root' AND host IN ('localhost', '127.0.0.1', '::1');" >> /tmp/init_script.sql;
     echo "FLUSH PRIVILEGES;" >> /tmp/init_script.sql;
 
     # create wordpress database and wordpress database user
