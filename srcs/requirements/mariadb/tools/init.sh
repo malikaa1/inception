@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ ! -d "/var/lib/mysql/mysql" ]; then
+if [ ! -d "/var/lib/mysql/mysql" || ! -d "/var/lib/mysql/wordpress"]; then
 
     # secure installation
     echo "UPDATE mysql.user SET Password=PASSWORD('$MYSQL_ROOT_PASSWORD') WHERE User='root';" >> /tmp/init_script.sql;
